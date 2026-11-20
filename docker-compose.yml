@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: beta_engineering_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://beta_admin:SuperSecurePassword2026@postgres:5432/beta_db?schema=public
+      - NEXTAUTH_SECRET=beta-engineering-secret-production-key-2026-very-secure
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - SMTP_HOST=smtp.example.com
+      - SMTP_PORT=587
+      - SMTP_USER=contact@beta-engineering.com
+      - SMTP_PASS=secretpassword
+      - SMTP_FROM="BeTA Engineering" <contact@beta-engineering.com>
+      - ADMIN_EMAIL=contact@beta-engineering.com
+    volumes:
+      - uploads_volume:/app/public/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: beta_engineering_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: beta_admin
+      POSTGRES_PASSWORD: SuperSecurePassword2026
+      POSTGRES_DB: beta_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U beta_admin -d beta_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  uploads_volume:
+

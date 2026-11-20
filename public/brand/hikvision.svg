@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="100%" height="100%">
+  <rect width="200" height="60" rx="8" fill="#F4FAFA" />
+  <text x="100" y="36" font-family="'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" fill="#EE2726" letter-spacing="2" text-anchor="middle">
+    HIKVISION
+  </text>
+</svg>
+

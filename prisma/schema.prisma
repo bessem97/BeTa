@@ -1,0 +1,169 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  nom          String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("admin")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Service {
+  id           String        @id @default(uuid())
+  slug         String        @unique
+  titre        String
+  sousTitre    String?
+  description  String
+  icone        String        // Ex: "Network", "Zap", "Cpu", "Cog", "Code"
+  image        String?
+  ordre        Int           @default(0)
+  traductions  String?       // JSON serialisé pour i18n
+  subServices  SubService[]
+  projects     Project[]
+  faqs         FAQ[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model SubService {
+  id          String   @id @default(uuid())
+  serviceId   String
+  titre       String
+  description String
+  ordre       Int      @default(0)
+  service     Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String         @id @default(uuid())
+  slug        String         @unique
+  titre       String
+  description String
+  client      String
+  lieu        String
+  pays        String         @default("Tunisie")
+  date        String
+  serviceId   String
+  statut      String         @default("Terminé") // "En cours", "Terminé"
+  publie      Boolean        @default(true)
+  misEnAvant  Boolean        @default(false)
+  service     Service        @relation(fields: [serviceId], references: [id])
+  images      ProjectImage[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model ProjectImage {
+  id        String   @id @default(uuid())
+  projectId String
+  url       String
+  alt       String?
+  ordre     Int      @default(0)
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model QuoteRequest {
+  id            String   @id @default(uuid())
+  nom           String
+  societe       String?
+  email         String
+  telephone     String
+  services      String   // JSON list or comma separated: ["Réseaux", "Électricité"]
+  description   String
+  budget        String?
+  delai         String?
+  pays          String
+  ville         String
+  fichiers      String?  // JSON list of file paths/names
+  statut        String   @default("nouveau") // "nouveau", "en_cours", "envoye", "gagne", "perdu"
+  notesInternes String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  nom       String
+  email     String
+  telephone String?
+  sujet     String
+  message   String
+  lu        Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(uuid())
+  auteur    String
+  poste     String?
+  societe   String
+  texte     String
+  note      Int      @default(5)
+  photo     String?
+  publie    Boolean  @default(true)
+  ordre     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Partner {
+  id        String   @id @default(uuid())
+  nom       String
+  logo      String
+  lien      String?
+  ordre     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model TeamMember {
+  id        String   @id @default(uuid())
+  nom       String
+  poste     String
+  photo     String?
+  bio       String
+  ordre     Int      @default(0)
+  linkedin  String?
+  createdAt DateTime @default(now())
+}
+
+model FAQ {
+  id        String   @id @default(uuid())
+  question  String
+  reponse   String
+  serviceId String?
+  ordre     Int      @default(0)
+  service   Service? @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Setting {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       String
+  description String?
+  updatedAt   DateTime @updatedAt
+}
+
+model MediaFile {
+  id        String   @id @default(uuid())
+  url       String
+  nom       String
+  type      String
+  taille    Int
+  createdAt DateTime @default(now())
+}
+

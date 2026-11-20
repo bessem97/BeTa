@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 90" width="100%" height="100%">
+  <defs>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B4F5C" />
+      <stop offset="100%" stop-color="#146b7d" />
+    </linearGradient>
+    <linearGradient id="peachGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFCBA4" />
+      <stop offset="100%" stop-color="#f5a46d" />
+    </linearGradient>
+  </defs>
+
+  <!-- Emblème Géométrique Tech BeTA -->
+  <g transform="translate(10, 10)">
+    <!-- Carré de fond adouci -->
+    <rect x="0" y="0" width="70" height="70" rx="14" fill="url(#tealGrad)" />
+    
+    <!-- Lignes de circuit / Réseau & Automatisme -->
+    <path d="M18 22 L34 22 L42 35 L54 35" stroke="#FFCBA4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <circle cx="18" cy="22" r="3.5" fill="#FFCBA4" />
+    <circle cx="54" cy="35" r="3.5" fill="#FFCBA4" />
+    
+    <!-- Symbole 'B' et 'T' imbriqué -->
+    <path d="M22 48 L22 26 L34 26 C40 26 44 29 44 34 C44 38 41 40 37 41 C43 42 47 45 47 50 C47 56 42 59 34 59 L22 59 Z" fill="none" stroke="#F4FAFA" stroke-width="3.5" stroke-linejoin="round" />
+    <line x1="16" y1="26" x2="42" y2="26" stroke="#FFCBA4" stroke-width="3.5" stroke-linecap="round" />
+    
+    <!-- Nœud d'impulsion électrique / signal -->
+    <circle cx="50" cy="50" r="4" fill="url(#peachGrad)" />
+  </g>
+
+  <!-- Typographie du Logo BeTA Engineering -->
+  <g transform="translate(96, 16)">
+    <text x="0" y="38" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif" font-size="36" font-weight="800" fill="#0B4F5C" letter-spacing="-0.5">
+      Be<tspan fill="#0B4F5C">T</tspan><tspan fill="#0B4F5C">A</tspan>
+    </text>
+    <text x="2" y="55" font-family="'Inter', 'Segoe UI', system-ui, sans-serif" font-size="11" font-weight="700" fill="#69b0c2" letter-spacing="4">
+      ENGINEERING
+    </text>
+    
+    <!-- Trait d'accentuation Soft Peach -->
+    <rect x="2" y="60" width="36" height="3" rx="1.5" fill="#FFCBA4" />
+  </g>
+</svg>
+

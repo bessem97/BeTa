@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F4FAFA;
+  --foreground: #0B4F5C;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Scrollbar professionnelle personnalisée aux couleurs BeTA */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #062f37;
+}
+::-webkit-scrollbar-thumb {
+  background: #0B4F5C;
+  border-radius: 5px;
+  border: 2px solid #062f37;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FFCBA4;
+}
+
+/* Sélections de texte */
+::selection {
+  background: #FFCBA4;
+  color: #073740;
+}
+
+/* Grille technologique cinématique */
+.tech-grid-pattern {
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(19, 126, 147, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(19, 126, 147, 0.08) 1px, transparent 1px);
+}
+
+.tech-grid-pattern-dark {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 203, 164, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 203, 164, 0.05) 1px, transparent 1px);
+}
+
+/* Effets Glassmorphism & Panneaux Cinématiques */
+.glass-panel-dark {
+  background: rgba(7, 45, 53, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 203, 164, 0.15);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(11, 79, 92, 0.1);
+}
+
+/* Lueur néon Soft Peach / Deep Teal */
+.glow-peach {
+  box-shadow: 0 0 40px -10px rgba(255, 203, 164, 0.35);
+}
+
+.glow-teal {
+  box-shadow: 0 0 50px -10px rgba(11, 79, 92, 0.5);
+}
+
+/* Animations cinématiques subtiles */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.08); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
